@@ -1,35 +1,16 @@
-# from django.shortcuts import render
-# from django.http import HttpResponse
-
-
-# def aisatsu(request):
-#     return HttpResponse("Hello World")
-# Create your views here.
 from django.shortcuts import render
 from django.http import HttpResponse
+from .forms import AisatsuForm
 
 
-# クエリパラメータがあるか無いか？をif文で分岐させる。
-# def aisatsu(request):
-#     if 'name' in request.GET:
-#         name = request.GET['name']
-#         result = 'My name is ' + name + '.'
-#     else:
-#         result = 'please enter your name at url bar!'
-#     return HttpResponse(result)
 def aisatsu(request):
     params = {
-        'title': 'Hello Worrld ver1',
-        'msg': 'こんにちは',
-        'gopage': 'secondaisatsu',
+        'title': 'Hello World',
+        'msg': 'ちゃんと挨拶したいので情報の登録をしてください',
+        'form': AisatsuForm(),
     }
-    return render(request, 'app1/index.html', params)
-
-
-def secondaisatsu(request):
-    params = {
-        'title': 'Hello Worrld ver2',
-        'msg': 'さようなら',
-        'gopage': 'aisatsu',
-    }
+    if (request.method == 'POST'):
+        params['msg'] = 'こんにちは!' + request.POST['name'] + 'さん!<br>' + request.POST['area'] + \
+            'にお住まいで<br>年齢は' + request.POST['age'] + '歳なんですね!<br>よろしくお願いします。'
+        params['form'] = AisatsuForm(request.POST)
     return render(request, 'app1/index.html', params)

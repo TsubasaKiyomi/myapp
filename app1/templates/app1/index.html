@@ -12,9 +12,12 @@
   </head>
   <body>
     <h1>{{title}}</h1>
-    <p>{{msg}}世界</p>
-    <p>{{msg}}世界</p>
-    <p>{{msg}}世界</p>
-    <p><a href="{% url gopage %}">{{gopage}}</a></p>
+    <p>{{msg|safe}}</p>
+    <!--ここでviews.pyのhtmlを有効化-->
+    <form action="{% url 'aisatsu' %}" method="post">
+      {% csrf_token %} {{form.as_ul}}
+      <!--ここ-->
+      <input type="submit" value="入力" />
+    </form>
   </body>
 </html>
