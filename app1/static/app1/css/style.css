@@ -1,0 +1,16 @@
+body {
+  color: blue;
+  font-size: 20px;
+}
+/* h1は　Hello Worrld ver1・2の部分 */
+h1 {
+  color: red;
+}
+/* pは こんにちは・さようなら　世界の部分 */
+p {
+  color: green;
+}
+/* aは ver1/ver2に遷移する部分 */
+a {
+  color: yellow;
+}
